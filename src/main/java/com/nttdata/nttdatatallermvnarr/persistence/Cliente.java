@@ -1,12 +1,16 @@
 package com.nttdata.nttdatatallermvnarr.persistence;
 
 import java.io.Serializable;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -37,6 +41,8 @@ public class Cliente extends AbstractEntity implements Serializable {
 
 	/** DNI */
 	private String dni;
+	
+	private List<Contrato> contratosList;
 
 	/**
 	 * 
@@ -107,6 +113,14 @@ public class Cliente extends AbstractEntity implements Serializable {
 		this.dni = dni;
 	}
 	
-	// Metodo de busqueda de Nombre y apellidos
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cliente")
+	public List<Contrato> getContratosList() {
+		return contratosList;
+	}
+
+	public void setContratosList(List<Contrato> contratosList) {
+		this.contratosList = contratosList;
+	}
+	
 
 }
