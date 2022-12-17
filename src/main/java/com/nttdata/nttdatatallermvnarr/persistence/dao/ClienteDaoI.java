@@ -24,6 +24,10 @@ public interface ClienteDaoI extends CommonDaoI<Cliente> {
 	 */
 	public List<Cliente> searchByNameAndSurnames(final String name, final String firstSurname, final String secondSurname);
 	
+	/**
+	 * Inserta un Cliente
+	 * @param cliente
+	 */
 	public void insertClient(Cliente cliente);
 
 }
