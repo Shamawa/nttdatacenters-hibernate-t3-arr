@@ -20,10 +20,8 @@
 		<!-- <property name="hibernate.show_sql">false</property> -->
 
 		<!-- MAPEOS -->
-		<mapping class="com.nttdata.hibernate.persistence.Player" />
-		<mapping class="com.nttdata.hibernate.persistence.Contract" />
-		<mapping class="com.nttdata.hibernate.persistence.Team" />
-		<mapping class="com.nttdata.hibernate.persistence.Match" />
+		<mapping class="com.nttdata.nttdatatallermvnarr.persistence.Cliente" />
+		<mapping class="com.nttdata.nttdatatallermvnarr.persistence.Contrato" />
 		
 	</session-factory>
 </hibernate-configuration>
