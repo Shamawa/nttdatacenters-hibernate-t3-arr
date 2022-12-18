@@ -1,7 +1,7 @@
 package com.nttdata.nttdatatallermvnarr.persistence;
 
 /**
- * Tabla de Contrato
+ /* Tabla de Contrato
  * 
  * @author Alexandra Rodriguez
  *

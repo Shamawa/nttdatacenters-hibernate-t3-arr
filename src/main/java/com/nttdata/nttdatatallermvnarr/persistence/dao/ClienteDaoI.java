@@ -28,6 +28,10 @@ public interface ClienteDaoI extends CommonDaoI<Cliente> {
 	 * Inserta un Cliente
 	 * @param cliente
 	 */
+	
 	public void insertClient(Cliente cliente);
+
+	public List<Cliente> searchByNameAndSurnames2(String name, String firstSurname, String secondSurname);
+
 
 }
