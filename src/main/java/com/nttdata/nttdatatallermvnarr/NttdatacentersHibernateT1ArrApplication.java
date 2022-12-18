@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import org.hibernate.Session;
 import org.hibernate.mapping.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.nttdata.nttdatatallermvnarr.persistence.Cliente;
 import com.nttdata.nttdatatallermvnarr.persistence.Contrato;
 import com.nttdata.nttdatatallermvnarr.persistence.dao.ClienteDaoImpl;
 import com.nttdata.nttdatatallermvnarr.persistence.dao.ContratoDaoImpl;
+import com.nttdata.nttdatatallermvnarr.services.ManagmentServiceI;
 import com.nttdata.nttdatatallermvnarr.utils.NTTDataHibernateUtil;
 
 /**
@@ -22,16 +25,22 @@ import com.nttdata.nttdatatallermvnarr.utils.NTTDataHibernateUtil;
  */
 
 @SpringBootApplication
-public class NttdatacentersHibernateT1ArrApplication {
+public class NttdatacentersHibernateT1ArrApplication implements CommandLineRunner {
+	
+	@Autowired
+	private ManagmentServiceI managmentServiceI;
 	/**
 	 * Metodo principal
-	 * 
 	 * @param args
 	 */
 
 	public static void main(String[] args) {
 		SpringApplication.run(NttdatacentersHibernateT1ArrApplication.class, args);
 
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
 		// Abrimos la sesión con la BBDD.
 		Session dataBaseConnection = NTTDataHibernateUtil.getSessionFactory().openSession();
 
@@ -50,7 +59,8 @@ public class NttdatacentersHibernateT1ArrApplication {
 		cliente1.setName("Alexandra");
 		cliente1.setFirstSurname("Rodriguez");
 		cliente1.setSecondSurname("Rodriguez");
-
+		managmentServiceI.addCliente(cliente1);
+		
 		// Creamos los Contratos.
 		contrato1.setIdContrato(0L);
 		contrato1.setCliente(cliente1);
@@ -87,12 +97,10 @@ public class NttdatacentersHibernateT1ArrApplication {
 		}
 
 		// Buscamos los Contratos por id de Cliente y los imprimimos por pantalla.
-		ArrayList<Contrato> contratosList = new ArrayList<Contrato>();
-		contratosList = (ArrayList<Contrato>) contrato.searchByid(10L);
-		for (Contrato c : contratosList) {
-			System.out.println(c.getIdContrato() + " " + c.getCliente().getName());
+		Contrato contratoCliente = contrato.searchByid(cliente1.getId());
+		if (contratoCliente != null) {
+			System.out.println(contratoCliente.getIdContrato() + " " + contratoCliente.getCliente().getName());
 		}
 
 	}
-
 }

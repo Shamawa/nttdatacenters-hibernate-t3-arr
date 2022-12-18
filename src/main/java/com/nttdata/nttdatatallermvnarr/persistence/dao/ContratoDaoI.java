@@ -2,7 +2,6 @@ package com.nttdata.nttdatatallermvnarr.persistence.dao;
 
 import java.util.List;
 
-import com.nttdata.nttdatatallermvnarr.persistence.Cliente;
 import com.nttdata.nttdatatallermvnarr.persistence.Contrato;
 
 /**
@@ -21,7 +20,7 @@ public interface ContratoDaoI extends CommonDaoI<Contrato> {
 	 * @param id del Cliente
 	 * @return La lista de Contratos del Cliente
 	 */
-	public List<Contrato> searchByid(final Long id);
+	public Contrato searchByid(final Long idContrato);
 
 	/**
 	 * Inserta un Contrato.
